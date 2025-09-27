@@ -10,7 +10,7 @@
 
 # ============================
 
-DOMAIN="IP de Apache"      # dominio o IP de tu servidor
+DOMAIN="192.168.1.36"      # dominio o IP de tu servidor
 
 DAV_ROOT="/var/www/webdav"
 
@@ -20,9 +20,9 @@ PASS_FILE="/etc/apache2/webdav.passwd"
 
 USUARIOS=(
 
-    "Usuario1:Contraseña"
+    "Mikel:123"
 
-    "Usuario2:Contraseña"
+    "Ane:123"
 
 )
  
@@ -185,22 +185,20 @@ echo "[INFO] Instalando davfs2 y montando carpeta para el usuario Mikel..."
 apt install -y davfs2
  
 mkdir -p /home/kali/Documents/webdav
-mkdir -p /home/kali/Documents/webdav2
 
 # Guardar credenciales en el archivo secrets
 
 mkdir -p /home/kali/.davfs2
 
-echo "http://$DOMAIN/webdav/$USER $USER Contraseña" >> /home/kali/.davfs2/secrets
-echo "http://$DOMAIN/webdav/$USER $USER Contraseña" >> /home/kali/.davfs2/secrets
+echo "http://$DOMAIN/webdav/Mikel Mikel 123" >> /home/kali/.davfs2/secrets
+
 chmod 600 /home/kali/.davfs2/secrets
  
 # Montar sin sudo (si kali está en grupo davfs2)
 
 usermod -aG davfs2 kali
 
-mount -t davfs http://$DOMAIN/webdav/Usuario1 /home/kali/Documents/webdav
-mount -t davfs http://$DOMAIN/webdav/Usuario1 /home/kali/Documents/webdav2
+mount -t davfs http://$DOMAIN/webdav/Mikel /home/kali/Documents/webdav
 chown kali:kali /home/kali/Documents/webdav
 chown root:root /home/kali/Documents/webdav
 
