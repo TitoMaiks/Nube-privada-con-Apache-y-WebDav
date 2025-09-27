@@ -10,7 +10,7 @@
 
 # ============================
 
-DOMAIN="192.168.1.36"      # dominio o IP de tu servidor
+DOMAIN="IP de Apache"      # dominio o IP de tu servidor
 
 DAV_ROOT="/var/www/webdav"
 
@@ -20,9 +20,9 @@ PASS_FILE="/etc/apache2/webdav.passwd"
 
 USUARIOS=(
 
-    "Mikel:123"
+    "Usuario1:Contraseña"
 
-    "Ane:123"
+    "Usuario2:Contraseña"
 
 )
  
@@ -190,7 +190,7 @@ mkdir -p /home/kali/Documents/webdav
 
 mkdir -p /home/kali/.davfs2
 
-echo "http://$DOMAIN/webdav/Mikel Mikel 123" >> /home/kali/.davfs2/secrets
+echo "http://$DOMAIN/webdav/Usuario1 Usuario1 Contraseña" >> /home/kali/.davfs2/secrets
 
 chmod 600 /home/kali/.davfs2/secrets
  
@@ -198,7 +198,7 @@ chmod 600 /home/kali/.davfs2/secrets
 
 usermod -aG davfs2 kali
 
-mount -t davfs http://$DOMAIN/webdav/Mikel /home/kali/Documents/webdav
+mount -t davfs http://$DOMAIN/webdav/Usuario1 /home/kali/Documents/webdav
 chown kali:kali /home/kali/Documents/webdav
 chown root:root /home/kali/Documents/webdav
 
